@@ -109,6 +109,21 @@ Routes are stored on disk, so by default routes are ephemeral. You can mount a v
 
 See [routesapi module](http://github.com/gliderlabs/logspout/blob/master/routesapi) for all options.
 
+#### Environment variables
+
+* `DEBUG` - emit debug logs
+* `EXCLUDE_LABEL` - exclude logs with a given label
+* `PORT` or `HTTP_PORT` - configure which port to listen on (default 80)
+* `RETRY_COUNT` - how many times to retry a broken socket (default 10)
+* `ROUTESPATH` - path to routes (default `/mnt/routes`)
+* `SYSLOG_DATA` - datum for data field (default `{{.Data}}`)
+* `SYSLOG_FORMAT` - syslog format to emit, either `rfc3164` or `rfc5424` (default `rfc5424`)
+* `SYSLOG_HOSTNAME` - datum for hostname field (default `{{.Container.Config.Hostname}}`)
+* `SYSLOG_PID` - datum for pid field (default `{{.Container.State.Pid}}`)
+* `SYSLOG_PRIORITY` - datum for priority field (default `{{.Priority}}`)
+* `SYSLOG_STRUCTURED_DATA` - datum for structured data field
+* `SYSLOG_TAG` - datum for tag field (default `{{.ContainerName}}+route.Options["append_tag"]`)
+
 ## Modules
 
 The standard distribution of logspout comes with all modules defined in this repository. You can remove or add new modules with custom builds of logspout. Just edit the `modules.go` file and do a `docker build`.
